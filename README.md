@@ -14,7 +14,6 @@ This project is an **ATM Operating System (ATM OS)** designed to simulate the fu
 - **Security Measures**: Session timeouts and encryption for sensitive data.
 
 ## Technologies Used
-- **Programming Language**: (e.g., Python, Java, C++)
-- **Database**: (e.g., SQLite, MySQL, PostgreSQL)
-- **User Interface**: (e.g., CLI, GUI with Tkinter/PyQt, Web-based UI)
-- **Security**: Basic encryption and authentication mechanisms
+- **Programming Language**: Java
+- **User Interface**: GUI with JavaFX
+- **Security**: Basic authentication mechanisms
