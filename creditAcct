@@ -1,0 +1,79 @@
+private class CreditAccount extends BankAccount {
+
+    private double creditLimit;
+    private double interestRate;
+
+    public CreditAccount(String accountNumber, String clientID, double initialBalance, double creditLimit, double interestRate) {
+        super(accountNumber, clientID, initialBalance);
+        this.creditLimit = creditLimit;
+        this.interestRate = interestRate;
+    }
+
+    public double getCreditLimit() {
+        return creditLimit;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    @Override
+    public void purchase(double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Invalid withdrawal amount.");
+        } else if (amount > creditLimit - getBalance()) {
+            throw new IllegalArgumentException("Transaction cancelled. Exceeds credit limit.");
+        } else {
+            super.deposit(amount);
+        }
+    }
+
+    public void makePayment(double amount, BankAccount paymentAccount) {
+        if (paymentAccountccount == null) {
+            throw new IllegalArgumentException("Invalid account.");
+        }
+        if (amount < 0) {
+            throw new IllegalArgumentException("Invalid payment amount.");
+        } else if (amount > getBalance()) {
+            ammount -= getBalance();
+            paymentAccount.deposit(ammount);
+            super.withdraw(getBalance());
+        } else {
+            balance -= amount;
+            paymentAccount.withdraw(ammount);
+        }
+    }
+
+    @Override
+    public void applyInterest() {
+        deposit(getBalance() * interestRate);
+    }
+
+    private boolean canOpenAccount(int creditScore) {
+        return creditScore >= 600;
+    }
+
+    private double calculateCreditLimit(int creditScore) {
+        if (creditScore >= 800) {
+            return 5000;
+        } else if (creditScore >= 700) {
+            return 3000;
+        } else if (creditScore >= 600) {
+            return 1000;
+        } else {
+            return 0;
+        }
+    }   
+
+    private double calculateInterestRate(int creditScore) {
+        if (creditScore >= 800) {
+            return 0.15;
+        } else if (creditScore >= 700) {
+            return 0.20;
+        } else if (creditScore >= 600) {
+            return 0.25;
+        } else {
+            return 0.30;
+        }
+    }
+}
