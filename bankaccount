@@ -1,11 +1,11 @@
 public abstract class BankAccount {
     private String accountNumber;
-    private String accountHolder;
+    private String clientID;
     private double balance;
 
-    public BankAccount(String accountNumber, String accountHolder, double initialBalance) {
+    public BankAccount(String accountNumber,  String clientID, double initialBalance) {
         this.accountNumber = accountNumber;
-        this.accountHolder = accountHolder;
+        this.accountHolder = clientID;
         this.balance = initialBalance;
     }
 
@@ -13,8 +13,8 @@ public abstract class BankAccount {
         return accountNumber;
     }
 
-    public String getAccountHolder() {
-        return accountHolder;
+    public String getClientID() {
+        return clientID;
     }
 
     public double getBalance() {
@@ -30,10 +30,12 @@ public abstract class BankAccount {
     }
 
     protected void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-        } else {
+        if (amount < 0) {
             throw new IllegalArgumentException("Invalid withdrawal amount.");
+        } else if (amount > balance) {
+            throw new IllegalArgumentException("Transication cancelled. Insufficienct funds.");
+        } else {
+            balance -= amount;
         }
     }
 
