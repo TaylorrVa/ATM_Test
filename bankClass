@@ -1,0 +1,54 @@
+import java.util.HashMap;
+import java.util.Map;
+
+private class BankClass {
+    private String name; 
+    private String address;
+    private int branchNum;   
+    private int routingNum;
+    private Map<Integer,Client> clientList;
+    // Private variables
+
+public BankClass(String name, String address, int branchNum, int routingNum){
+    this.name = name;
+    this.address = address;
+    this.branchNum = branchNum;
+    this.routingNum = routingNum;
+    this.clientList = new HashMap<>(); 
+    // Intilize the client list hash table and set varables
+
+} 
+
+public void addClient(int clientId, String clientName, String clientAddress, double clientBalence){
+    Client client = new client(clientName, clientAddress, clientBalence);
+    clientList.put(clientId, client);
+    // This methods adds client to the hashtable but using client ID to put cilent info within the bucket
+    // of the cilent ID
+}
+public void getCilentInfo(int cilentId){
+    Client client =cilentList.getOrDefault(cilentId, null);
+    if (client != null){
+        getCilentInfo();
+    } 
+    else{
+        System.out.println("Client not found");
+    }
+    // Method to get information of a client based on client ID
+}
+public void removeClient(int cilentId){
+    if (clientList.containsKey(cilentId)){
+        cilentList.remove(cilentId);
+    } 
+    else {
+        System.out.println("Client with ID " + clientId + " not found.");
+    }
+    // Looks for cilent if cilent ID is found it will remoe it if not it gives a message saying not foumd 
+}
+public void displayBankInfo() {
+    System.out.println("Bank Name: " + name);
+    System.out.println("Bank Address: " + address);
+    System.out.println("Branch Number: " + branchNum);
+    System.out.println("Routing Number: " + routingNum);
+}
+
+}
