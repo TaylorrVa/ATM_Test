@@ -1,4 +1,4 @@
-private class BankCLass extends Cilent
+private class BankCLass extends Client
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +38,7 @@ public void getCilentInfo(int cilentId){
 }
 public void removeClient(int cilentId){
     if (clientList.containsKey(cilentId)){
-        cilentList.remove(cilentId);
+        clientList.remove(cilentId);
     } 
     else {
         System.out.println("Client with ID " + clientId + " not found.");
