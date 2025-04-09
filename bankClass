@@ -1,3 +1,4 @@
+private class BankCLass extends Cilent
 import java.util.HashMap;
 import java.util.Map;
 
