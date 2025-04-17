@@ -5,8 +5,8 @@
 private class CheckingAccount extends BankAccount {
     private double overdraftLimit;
 
-    public CheckingAccount(String accountNumber, String clientID, double initialBalance, double overdraftLimit) {
-        super(accountNumber, clientID, initialBalance);
+    public CheckingAccount(String accountNumber, String clientID, double initialBalance, Transaction transactionHistory, double overdraftLimit) {
+        super(accountNumber, clientID, initialBalance, transactionHistory);
         this.overdraftLimit = overdraftLimit;
     }
 

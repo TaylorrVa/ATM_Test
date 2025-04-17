@@ -3,8 +3,8 @@ private class CreditAccount extends BankAccount {
     private double creditLimit;
     private double interestRate;
 
-    public CreditAccount(String accountNumber, String clientID, double initialBalance, double creditLimit, double interestRate) {
-        super(accountNumber, clientID, initialBalance);
+    public CreditAccount(String accountNumber, String clientID, double initialBalance, Transaction transactionHistory double creditLimit, double interestRate) {
+        super(accountNumber, clientID, initialBalance, transactionHistory);
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
@@ -29,18 +29,18 @@ private class CreditAccount extends BankAccount {
     }
 
     public void makePayment(double amount, BankAccount paymentAccount) {
-        if (paymentAccountccount == null) {
+        if (paymentAccount == null) {
             throw new IllegalArgumentException("Invalid account.");
         }
         if (amount < 0) {
             throw new IllegalArgumentException("Invalid payment amount.");
         } else if (amount > getBalance()) {
-            ammount -= getBalance();
-            paymentAccount.deposit(ammount);
+            amount -= getBalance();
+            paymentAccount.deposit(amount);
             super.withdraw(getBalance());
         } else {
             balance -= amount;
-            paymentAccount.withdraw(ammount);
+            paymentAccount.withdraw(amount);
         }
     }
 
