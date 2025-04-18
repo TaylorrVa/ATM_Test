@@ -2,12 +2,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
-private class BankClass {
+public class BankClass {
     private String name; 
     private String address;
     private int branchNum;   
     private int routingNum;
-    private Map<Integer,Client> clientList;
+    private Map<Integer,User> clientList;
     // Private variables
 
 public BankClass(String name, String address, int branchNum, int routingNum){
@@ -16,34 +16,34 @@ public BankClass(String name, String address, int branchNum, int routingNum){
     this.branchNum = branchNum;
     this.routingNum = routingNum;
     this.clientList = new HashMap<>(); 
-    // Intilize the client list hash table and set varables
+    // Intilize the client list hash table and set variables
 
 } 
 
-public void addClient(int clientId, String clientName, String clientAddress, double clientBalence){
-    Client client = new client(clientName, clientAddress, clientBalence);
-    clientList.put(clientId, client);
+public void addClient(int clientId, String clientName, String clientAddress, double clientBalance){
+    User user = new User(clientName, clientAddress, clientBalance);
+    clientList.put(clientId, user);
     // This methods adds client to the hashtable but using client ID to put cilent info within the bucket
-    // of the cilent ID
+    // of the client ID
 }
-public void getCilentInfo(int cilentId){
-    Client client =cilentList.getOrDefault(cilentId, null);
-    if (client != null){
-        getCilentInfo();
+public void getClientInfo(int clientId){
+    User user = clientList.getOrDefault(clientId, null);
+    if (user != null){
+        System.out.println(user);
     } 
     else{
         System.out.println("Client not found");
     }
     // Method to get information of a client based on client ID
 }
-public void removeClient(int cilentId){
-    if (clientList.containsKey(cilentId)){
-        clientList.remove(cilentId);
+public void removeClient(int clientId){
+    if (clientList.containsKey(clientId)){
+        clientList.remove(clientId);
     } 
     else {
         System.out.println("Client with ID " + clientId + " not found.");
     }
-    // Looks for cilent if cilent ID is found it will remoe it if not it gives a message saying not foumd 
+    // Looks for client if client ID is found it will remove it if not it gives a message saying not found
 }
 public void displayBankInfo() {
     System.out.println("Bank Name: " + name);

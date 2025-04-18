@@ -1,4 +1,4 @@
-private class CreditAccount extends BankAccount {
+public class CreditAccount extends BankAccount {
 
     private double creditLimit;
     private double interestRate;
@@ -20,40 +20,44 @@ private class CreditAccount extends BankAccount {
     @Override
     public void purchase(double amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("Invalid withdrawal amount.");
-        } else if (amount > creditLimit - getBalance()) {
+            throw new IllegalArgumentException("Invalid purchase amount.");
+        } else if (getBalance() + amount > creditLimit) {
             throw new IllegalArgumentException("Transaction cancelled. Exceeds credit limit.");
         } else {
-            super.deposit(amount);
+            super.withdraw(amount);
         }
     }
 
     public void makePayment(double amount, BankAccount paymentAccount) {
-        if (paymentAccountccount == null) {
-            throw new IllegalArgumentException("Invalid account.");
-        }
-        if (amount < 0) {
-            throw new IllegalArgumentException("Invalid payment amount.");
-        } else if (amount > getBalance()) {
-            ammount -= getBalance();
-            paymentAccount.deposit(ammount);
-            super.withdraw(getBalance());
-        } else {
+            if (paymentAccount == null) {
+                throw new IllegalArgumentException("Invalid account.");
+            }
+            if (amount <= 0) {
+                throw new IllegalArgumentException("Invalid payment amount.");
+            }
+            if (amount > paymentAccount.getBalance()) {
+                throw new IllegalArgumentException("Insufficient funds in payment account.");
+            }
+
+            // Reduce credit balance (you owe less)
             balance -= amount;
-            paymentAccount.withdraw(ammount);
+
+            // Remove funds from the payment account
+            paymentAccount.withdraw(amount);
+
+            updateTransaction("payment", amount);
         }
-    }
 
     @Override
     public void applyInterest() {
         deposit(getBalance() * interestRate);
     }
 
-    private boolean canOpenAccount(int creditScore) {
+    public boolean canOpenAccount(int creditScore) {
         return creditScore >= 600;
     }
 
-    private double calculateCreditLimit(int creditScore) {
+    public static double calculateCreditLimit(int creditScore) {
         if (creditScore >= 800) {
             return 5000;
         } else if (creditScore >= 700) {
@@ -65,7 +69,7 @@ private class CreditAccount extends BankAccount {
         }
     }   
 
-    private double calculateInterestRate(int creditScore) {
+    public static double calculateInterestRate(int creditScore) {
         if (creditScore >= 800) {
             return 0.15;
         } else if (creditScore >= 700) {
@@ -75,5 +79,10 @@ private class CreditAccount extends BankAccount {
         } else {
             return 0.30;
         }
+    }
+
+
+    public String toString() {
+        return "CreditAccount [Account#: " + getAccountNumber() + ", ClientID: " + getClientID() + ", Balance Owed: $" + getBalance() + ", Credit Limit: $" + creditLimit + ", Interest Rate: " + (interestRate * 100) + "%]";
     }
 }
