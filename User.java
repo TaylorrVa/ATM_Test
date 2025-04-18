@@ -9,7 +9,7 @@ public class User extends Person {
         this.userName = userName;
         this.password = password;
         this.accessNum = accessNum;
-        this.pin = 0000;
+        this.pin = 1111;
         
     }
 
@@ -49,5 +49,6 @@ public class User extends Person {
     public String toString(){
         return "User{" + getFirstName() + ", " + getLastName() + ", " + String.valueOf(accessNum) +", " + userName + ", " + password + ", " + String.valueOf(pin);
     }
+
 }
 

@@ -16,34 +16,34 @@ public BankClass(String name, String address, int branchNum, int routingNum){
     this.branchNum = branchNum;
     this.routingNum = routingNum;
     this.clientList = new HashMap<>(); 
-    // Intilize the client list hash table and set varables
+    // Intilize the client list hash table and set variables
 
 } 
 
-public void addClient(int clientId, String clientName, String clientAddress, double clientBalence){
-    Client client = new client(clientName, clientAddress, clientBalence);
+public void addClient(int clientId, String clientName, String clientAddress, double clientBalance){
+    Client client = new client(clientName, clientAddress, clientBalance);
     clientList.put(clientId, client);
     // This methods adds client to the hashtable but using client ID to put cilent info within the bucket
-    // of the cilent ID
+    // of the client ID
 }
-public void getCilentInfo(int cilentId){
-    Client client =cilentList.getOrDefault(cilentId, null);
+public void getClientInfo(int clientId){
+    Client client =clientList.getOrDefault(clientId, null);
     if (client != null){
-        getCilentInfo();
+        getClientInfo();
     } 
     else{
         System.out.println("Client not found");
     }
     // Method to get information of a client based on client ID
 }
-public void removeClient(int cilentId){
-    if (clientList.containsKey(cilentId)){
-        clientList.remove(cilentId);
+public void removeClient(int clientId){
+    if (clientList.containsKey(clientId)){
+        clientList.remove(clientId);
     } 
     else {
         System.out.println("Client with ID " + clientId + " not found.");
     }
-    // Looks for cilent if cilent ID is found it will remoe it if not it gives a message saying not foumd 
+    // Looks for client if client ID is found it will remove it if not it gives a message saying not found
 }
 public void displayBankInfo() {
     System.out.println("Bank Name: " + name);

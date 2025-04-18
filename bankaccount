@@ -4,14 +4,14 @@ import java.util.Stack;
 public abstract class BankAccount {
     private String accountNumber;
     private String clientID;
-    private double balance;
-    private Stack transactionHistory;
+    protected double balance;
+    private Stack<Transaction> transactionHistory;
 
     public BankAccount(String accountNumber,  String clientID, double initialBalance) {
         this.accountNumber = accountNumber;
         this.clientID = clientID;
         this.balance = initialBalance;
-        this.transactionHistory = null;
+        this.transactionHistory = new Stack<Transaction>();
     }
 
     public String getAccountNumber() {
@@ -27,7 +27,11 @@ public abstract class BankAccount {
     }
 
     public void updateTransaction( String type, double amount) {
-        transactionHistory.push(new Transaction(type, amount);
+        transactionHistory.push(new Transaction(type, amount));
+    }
+
+    public Stack<Transaction> getTransactionHistory() {
+        return (Stack<Transaction>) transactionHistory.clone(); // avoid exposing internal state
     }
 
     protected void deposit(double amount) {
