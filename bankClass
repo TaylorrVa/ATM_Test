@@ -51,24 +51,4 @@ public void displayBankInfo() {
     System.out.println("Branch Number: " + branchNum);
     System.out.println("Routing Number: " + routingNum);
 }
-
-public static void main(String[] args) {
-    BankClass bank = new BankClass("OpenAI Bank", "123 AI Street", 101, 999999);
-
-    bank.displayBankInfo();
-
-    System.out.println("\nAdding Clients:");
-    bank.addClient(1, "Alice Johnson", "456 Elm St", 5000.75);
-    bank.addClient(2, "Bob Smith", "789 Oak Ave", 3200.00);
-
-    System.out.println("\nGetting Client Info for ID 1:");
-    bank.getClientInfo(1);
-
-    System.out.println("\nRemoving Client ID 2:");
-    bank.removeClient(2);
-
-    System.out.println("\nTrying to Get Info for Removed Client:");
-    bank.getClientInfo(2);
-}
-
 }
