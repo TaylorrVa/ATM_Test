@@ -2,23 +2,23 @@
 import java.util.Stack;
 
 public abstract class BankAccount {
-    private String accountNumber;
-    private String clientID;
+    private int accountNumber;
+    private int clientID;
     protected double balance;
     private Stack<Transaction> transactionHistory;
 
-    public BankAccount(String accountNumber,  String clientID, double initialBalance) {
+    public BankAccount(int accountNumber,  int clientID, double initialBalance) {
         this.accountNumber = accountNumber;
         this.clientID = clientID;
         this.balance = initialBalance;
         this.transactionHistory = new Stack<Transaction>();
     }
 
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return accountNumber;
     }
 
-    public String getClientID() {
+    public int getClientID() {
         return clientID;
     }
 
@@ -31,7 +31,7 @@ public abstract class BankAccount {
     }
 
     public Stack<Transaction> getTransactionHistory() {
-        return (Stack<Transaction>) transactionHistory.clone(); // avoid exposing internal state
+        return transactionHistory; 
     }
 
     protected void deposit(double amount) {
