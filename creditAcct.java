@@ -3,28 +3,36 @@ public class CreditAccount extends BankAccount {
     private double creditLimit;
     private double interestRate;
 
-    public CreditAccount(String accountNumber, String clientID, double initialBalance, double creditLimit, double interestRate) {
+    public CreditAccount(int accountNumber, int clientID, double initialBalance, double creditLimit, double interestRate) {
         super(accountNumber, clientID, initialBalance);
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
 
     public double getCreditLimit() {
-        return creditLimit;
+        return this.creditLimit;
+    }
+    
+    public void setCreditLimit(int creditScore) {
+    	this.creditLimit = calculateCreditLimit(creditScore);
+    }
+    
+    public void setInterestRate(int creditScore) {
+        this.interestRate = calculateInterestRate(creditScore);
     }
 
     public double getInterestRate() {
-        return interestRate;
+        return this.interestRate;
     }
 
-    @Override
     public void purchase(double amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Invalid purchase amount.");
         } else if (getBalance() + amount > creditLimit) {
             throw new IllegalArgumentException("Transaction cancelled. Exceeds credit limit.");
         } else {
-            super.withdraw(amount);
+            deposit(amount);
+            updateTransaction("purchase", amount);
         }
     }
 
@@ -35,14 +43,14 @@ public class CreditAccount extends BankAccount {
             if (amount <= 0) {
                 throw new IllegalArgumentException("Invalid payment amount.");
             }
-            if (amount > paymentAccount.getBalance()) {
-                throw new IllegalArgumentException("Insufficient funds in payment account.");
+           if (amount > paymentAccount.getBalance()) {
+               throw new IllegalArgumentException("Insufficient funds in payment account.");
             }
 
             // Reduce credit balance (you owe less)
             balance -= amount;
 
-            // Remove funds from the payment account
+            //Remove funds from the payment account
             paymentAccount.withdraw(amount);
 
             updateTransaction("payment", amount);
@@ -80,7 +88,6 @@ public class CreditAccount extends BankAccount {
             return 0.30;
         }
     }
-
 
     public String toString() {
         return "CreditAccount [Account#: " + getAccountNumber() + ", ClientID: " + getClientID() + ", Balance Owed: $" + getBalance() + ", Credit Limit: $" + creditLimit + ", Interest Rate: " + (interestRate * 100) + "%]";
