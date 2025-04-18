@@ -1,18 +1,17 @@
 
 
-
-
 public class CheckingAccount extends BankAccount {
     private double overdraftLimit;
 
-    public CheckingAccount(String accountNumber, String clientID, double initialBalance, double overdraftLimit) {
+    public CheckingAccount(int accountNumber, int clientID, double initialBalance, double overdraftLimit) {
         super(accountNumber, clientID, initialBalance);
         this.overdraftLimit = overdraftLimit;
     }
 
-    public double getOverdraftLimit() {
-        return overdraftLimit;
+    public double getOverdraftLimit(int creditScore) {
+        return calculateOverdraftLimit(creditScore);
     }
+    
 
     @Override
     public void withdraw(double amount) {
@@ -34,7 +33,7 @@ public class CheckingAccount extends BankAccount {
         // No interest applied for checking accounts
     }
 
-    public static boolean canOpenAccount(double initialBalance) {
+    public boolean canOpenAccount(double initialBalance) {
         return initialBalance >= 50;
     }
 
@@ -48,6 +47,10 @@ public class CheckingAccount extends BankAccount {
         } else {
             return 0;
         }
+    }
+    
+    public double getBalance() {
+    	return this.balance;
     }
 
     public String toString() {
